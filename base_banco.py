@@ -38,7 +38,7 @@ class Professor:
     def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Professor (
     pessoa int PRIMARY KEY,
-    foreign key (pessoa) references Pessoa(cpf),
+    foreign key (pessoa) references Pessoa(cpf)
     codigo varchar (255) NOT NULL
     );"""
         self.mycursor = conn.mycursor
@@ -66,13 +66,13 @@ class Responsavel:
 
 
 class Horario:
-    def __init__(self, conn) -> None:
+    def __init__(self,conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Horario (
     codigo int PRIMARY KEY,
     );"""
 
 class Unidade:
-    def __init__(self, conn) -> None:
+    def __init__(self,conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Unidade (
     nome varchar(255) PRIMARY KEY,
     professor int NOT NULL,
@@ -80,19 +80,19 @@ class Unidade:
     );"""
 
 class Modalidades:
-    def __init__(self, conn) -> None:
+    def __init__(self,conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Modalidade (
     nome varchar(255) PRIMARY KEY,
     );"""
 
 class Experiencia:
-    def __init__(self, conn) -> None:
+    def __init__(self,conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Experiencia (
     nome varchar(255) PRIMARY KEY,
     );"""
 
 class ExperienciaAtendeModalidade:
-    def __init__(self, conn) -> None:
+    def __init__(self,conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS ExperienciaAtendeModalidade (
     modalidade varchar(255) NOT NULL,
     foreign key (modalidade) references Modalidade(nome)
