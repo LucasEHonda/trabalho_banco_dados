@@ -1,4 +1,3 @@
-
 class Experiencia:
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
@@ -23,9 +22,14 @@ class Experiencia:
 
         try:
             self.mycursor.execute(query)
-            print(f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^")
+            print(
+                f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
+            )
         except Exception as erro:
-            print(f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}")
+            print(
+                f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )
+
 
 class ExperienciaAtendeModalidade:
     def __init__(self, conn) -> None:
@@ -51,10 +55,16 @@ class ExperienciaAtendeModalidade:
 
         dados_inseridos = f"'{modalidade}', '{experiencia}'"
 
-        query = self.insert_query + f"(modalidade, experiencia) VALUES ({dados_inseridos});"
+        query = (
+            self.insert_query + f"(modalidade, experiencia) VALUES ({dados_inseridos});"
+        )
 
         try:
             self.mycursor.execute(query)
-            print(f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^")
+            print(
+                f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
+            )
         except Exception as erro:
-            print(f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}")        
+            print(
+                f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )

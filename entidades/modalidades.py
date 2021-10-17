@@ -1,6 +1,5 @@
-
 class Modalidade:
-    def __init__(self,conn) -> None:
+    def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
         self.insert_query = f"INSERT INTO {self.CLASS_NAME} "
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
@@ -19,6 +18,10 @@ class Modalidade:
 
         try:
             self.mycursor.execute(query)
-            print(f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^")
+            print(
+                f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
+            )
         except Exception as erro:
-            print(f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}")        
+            print(
+                f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )

@@ -18,6 +18,10 @@ class Livro:
 
         try:
             self.mycursor.execute(query)
-            print(f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^")
+            print(
+                f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
+            )
         except Exception as erro:
-            print(f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}")
+            print(
+                f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )

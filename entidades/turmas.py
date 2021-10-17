@@ -1,4 +1,3 @@
-
 class Turma:
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
@@ -26,16 +25,25 @@ class Turma:
         aluno = dados.get("aluno")
         horario = dados.get("horario")
         modalidade = dados.get("modalidade")
-        
-        dados_inseridos = f"'{codigo}', '{professor}', '{aluno}', '{horario}', '{modalidade}'"
 
-        query = self.insert_query + f"(codigo, professor, aluno, horario, modalidade) VALUES ({dados_inseridos});"
+        dados_inseridos = (
+            f"'{codigo}', '{professor}', '{aluno}', '{horario}', '{modalidade}'"
+        )
+
+        query = (
+            self.insert_query
+            + f"(codigo, professor, aluno, horario, modalidade) VALUES ({dados_inseridos});"
+        )
 
         try:
             self.mycursor.execute(query)
-            print(f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^")
+            print(
+                f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
+            )
         except Exception as erro:
-            print(f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}")
+            print(
+                f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )
 
 
 class TurmaPossuiLivro:
@@ -52,20 +60,24 @@ class TurmaPossuiLivro:
     );"""
 
         print(f"--- Criando/Instanciando tabela TurmaPossuiLivro ---")
-    
+
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
 
     def criar(self, dados):
         livro = dados.get("livro")
         turma = dados.get("turma")
-        
+
         dados_inseridos = f"'{livro}', '{turma}'"
 
         query = self.insert_query + f"(livro, turma) VALUES ({dados_inseridos});"
 
         try:
             self.mycursor.execute(query)
-            print(f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^")
+            print(
+                f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
+            )
         except Exception as erro:
-            print(f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}")           
+            print(
+                f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )

@@ -1,4 +1,3 @@
-
 class Unidade:
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
@@ -26,6 +25,10 @@ class Unidade:
 
         try:
             self.mycursor.execute(query)
-            print(f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^")
+            print(
+                f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
+            )
         except Exception as erro:
-            print(f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}")
+            print(
+                f"Não foi possivel inserir em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )
