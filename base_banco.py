@@ -38,7 +38,7 @@ class Professor:
     def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Professor (
     pessoa int PRIMARY KEY,
-    foreign key (pessoa) references Pessoa(cpf)
+    foreign key (pessoa) references Pessoa(cpf),
     codigo varchar (255) NOT NULL
     );"""
         self.mycursor = conn.mycursor
@@ -66,39 +66,46 @@ class Responsavel:
 
 
 class Horario:
-    def __init__(self,conn) -> None:
+    def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Horario (
     codigo int PRIMARY KEY,
     );"""
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)
 
 class Unidade:
-    def __init__(self,conn) -> None:
+    def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Unidade (
     nome varchar(255) PRIMARY KEY,
     professor int NOT NULL,
     foreign key (professor) references Professor(pessoa)
     );"""
-
-class Modalidades:
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)
+class Modalidade:
     def __init__(self,conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Modalidade (
-    nome varchar(255) PRIMARY KEY,
+    nome varchar(255) PRIMARY KEY
     );"""
-
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)
 class Experiencia:
-    def __init__(self,conn) -> None:
+    def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Experiencia (
-    nome varchar(255) PRIMARY KEY,
+    nome varchar(255) PRIMARY KEY
     );"""
-
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)
 class ExperienciaAtendeModalidade:
-    def __init__(self,conn) -> None:
+    def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS ExperienciaAtendeModalidade (
     modalidade varchar(255) NOT NULL,
-    foreign key (modalidade) references Modalidade(nome)
+    foreign key (modalidade) references Modalidade(nome),
     experiencia varchar(255) NOT NULL,
     foreign key (experiencia) references Experiencia(nome)
     );"""
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)
 
 
 
@@ -106,7 +113,10 @@ conn = Conexao()
 pessoa = Pessoa(conn)
 professor = Professor(conn)
 turma = Turma(conn)
-
+experiencia = Experiencia(conn)
+modalidade = Modalidade(conn)
+responsavel = Responsavel(conn)
+experiencia_atende_modalidade = ExperienciaAtendeModalidade(conn)
 
 class EstruturaBase:
     def __init__(self) -> None:
