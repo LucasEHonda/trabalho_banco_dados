@@ -1,4 +1,7 @@
-class Turma:
+from .entidade_abstrata import EntidadeAbstrata
+
+
+class Turma(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 
@@ -46,7 +49,7 @@ class Turma:
             )
 
 
-class TurmaPossuiLivro:
+class TurmaPossuiLivro(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 

@@ -1,4 +1,7 @@
-class Responsavel:
+from .entidade_abstrata import EntidadeAbstrata
+
+
+class Responsavel(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 
@@ -32,7 +35,7 @@ class Responsavel:
             )
 
 
-class ResponsavelPorAluno:
+class ResponsavelPorAluno(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 

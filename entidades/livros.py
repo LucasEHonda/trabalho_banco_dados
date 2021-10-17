@@ -1,4 +1,7 @@
-class Livro:
+from .entidade_abstrata import EntidadeAbstrata
+
+
+class Livro(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
         self.insert_query = f"INSERT INTO {self.CLASS_NAME} "

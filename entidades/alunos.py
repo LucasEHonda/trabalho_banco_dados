@@ -1,4 +1,7 @@
-class Aluno:
+from .entidade_abstrata import EntidadeAbstrata
+
+
+class Aluno(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 

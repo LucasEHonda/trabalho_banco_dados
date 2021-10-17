@@ -31,6 +31,15 @@ class EstruturaBase:
     def criar(self, entidade, dados):
         entidade.criar(dados)
 
+    def deletar(self, entidade, dados):
+        entidade.deletar(dados.get("coluna"), dados.get("valor"))
+
+    def pegar(self, entidade, dados):
+        resultados = entidade.pegar(dados.get("coluna"), dados.get("valor"))
+
+        for resultado in resultados:
+            print(resultado)
+
 
 banco = EstruturaBase()
 
@@ -73,5 +82,14 @@ banco.criar(
 banco.criar(
     banco.turma_possui_livro, {"livro": "como ser um cara legal", "turma": "#T01"}
 )
+
+banco.pegar(
+    banco.turma_possui_livro, {"coluna": "livro", "valor": "como ser um cara legal"}
+)
+
+banco.deletar(
+    banco.turma_possui_livro, {"coluna": "livro", "valor": "como ser um cara legal"}
+)
+
 
 banco.conn.drop_banco()

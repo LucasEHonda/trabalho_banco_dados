@@ -24,5 +24,5 @@ class Conexao:
         self.mycursor.execute(f"USE {self.NOME_BANCO}")
 
     def drop_banco(self) -> None:
-        print(f"--- Deletando banco {self.NOME_BANCO} ---")
+        print(f"%%% Deletando banco {self.NOME_BANCO} %%%")
         self.mycursor.execute(f"DROP DATABASE {self.NOME_BANCO}")

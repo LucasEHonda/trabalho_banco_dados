@@ -1,4 +1,7 @@
-class Horario:
+from .entidade_abstrata import EntidadeAbstrata
+
+
+class Horario(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 

@@ -1,4 +1,7 @@
-class Experiencia:
+from .entidade_abstrata import EntidadeAbstrata
+
+
+class Experiencia(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 
@@ -31,7 +34,7 @@ class Experiencia:
             )
 
 
-class ExperienciaAtendeModalidade:
+class ExperienciaAtendeModalidade(EntidadeAbstrata):
     def __init__(self, conn) -> None:
         self.CLASS_NAME = self.__class__.__name__
 
