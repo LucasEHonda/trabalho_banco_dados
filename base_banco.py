@@ -4,6 +4,7 @@ import mysql.connector
 
 class Conexao:
     def __init__(self) -> None:
+        self.NOME_BANCO = 'db_escolaIdiomas'
         self.con = mysql.connector.connect(user='admin', password='admin123', host='localhost')
 
         self.mycursor = self.con.cursor()
@@ -12,12 +13,15 @@ class Conexao:
 
         exists = False
         for x in self.mycursor:
-            if ('db_escolaIdiomas' in list(x)):
+            if (self.NOME_BANCO in list(x)):
                 exists = True
 
         if not exists:
             self.mycursor.execute("CREATE DATABASE db_escolaIdiomas")
         self.mycursor.execute("USE db_escolaIdiomas")
+    
+    def drop_banco(self) -> None:        
+        self.mycursor.execute("DROP DATABASE db_escolaIdiomas")
 
 class Pessoa:
     def __init__(self, conn) -> None:
@@ -39,19 +43,20 @@ class Professor:
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
 
-# class Turma:
-#     def __init__(self, conn) -> None:
-#         query = """CREATE TABLE IF NOT EXISTS Turma (
-#     pessoa int PRIMARY KEY,
-#     foreign key (pessoa) references Pessoa(cpf)
-#     );"""
-#         self.mycursor = conn.mycursor
-#         self.mycursor.execute(query)
+class Turma:
+    def __init__(self, conn) -> None:
+        query = """CREATE TABLE IF NOT EXISTS Turma (
+    codigo varchar(255) PRIMARY KEY,
+    professor int NOT NULL,
+    foreign key (professor) references Professor(pessoa)
+    );"""
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)
 
 conn = Conexao()
 pessoa = Pessoa(conn)
-pessoa = Professor(conn)
-
+professor = Professor(conn)
+turma = Turma(conn)
 
 
 class EstruturaBase:
