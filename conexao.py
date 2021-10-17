@@ -3,6 +3,7 @@ import mysql.connector
 class Conexao:
     def __init__(self) -> None:
         self.NOME_BANCO = 'db_escolaIdiomas'
+        print(f"*** Iniciando conexão ao banco ***")
         self.con = mysql.connector.connect(user='admin', password='admin123', host='localhost')
 
         self.mycursor = self.con.cursor()
@@ -19,5 +20,6 @@ class Conexao:
             self.mycursor.execute(F"CREATE DATABASE {self.NOME_BANCO}")
         self.mycursor.execute(f"USE {self.NOME_BANCO}")
     
-    def drop_banco(self) -> None:        
+    def drop_banco(self) -> None:
+        print(f"--- Deletando banco {self.NOME_BANCO} ---")
         self.mycursor.execute(f"DROP DATABASE {self.NOME_BANCO}")
