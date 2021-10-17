@@ -28,10 +28,14 @@ class EstruturaBase:
         self.turma = Turma(self.conn)
         self.turma_possui_livro = TurmaPossuiLivro(self.conn)
 
+    def criar(self, entidade, dados):
+        entidade.criar(dados)
+
 
 banco = EstruturaBase()
 
-banco.pessoa.criar(
+banco.criar(
+    banco.pessoa,
     {
         "cpf": int("054742"),
         "aniversario": "07/12/1999",
@@ -39,31 +43,35 @@ banco.pessoa.criar(
         "sexo": "Masculino",
         "cidade": "Brasilia",
         "estado": "DF",
-    }
+    },
 )
-banco.professor.criar({"pessoa": int("054742"), "codigo": "#001"})
-banco.aluno.criar({"pessoa": int("054742")})
-banco.unidade.criar({"professor": int("054742"), "nome": "brasilia - Asa sul"})
-banco.responsavel.criar({"pessoa": int("054742")})
-banco.horario.criar({"codigo": 235})
-banco.livro.criar({"nome": "como ser um cara legal"})
-banco.modalidade.criar({"nome": "presencial"})
-banco.experiencia.criar({"nome": "EAD"})
-banco.turma.criar(
+banco.criar(banco.professor, {"pessoa": int("054742"), "codigo": "#001"})
+banco.criar(banco.aluno, {"pessoa": int("054742")})
+banco.criar(banco.unidade, {"professor": int("054742"), "nome": "brasilia - Asa sul"})
+banco.criar(banco.responsavel, {"pessoa": int("054742")})
+banco.criar(banco.horario, {"codigo": 235})
+banco.criar(banco.livro, {"nome": "como ser um cara legal"})
+banco.criar(banco.modalidade, {"nome": "presencial"})
+banco.criar(banco.experiencia, {"nome": "EAD"})
+banco.criar(
+    banco.turma,
     {
         "codigo": "#T01",
         "professor": int("054742"),
         "aluno": int("054742"),
         "horario": 235,
         "modalidade": "presencial",
-    }
+    },
 )
-banco.experiencia_atende_modalidade.criar(
-    {"modalidade": "presencial", "experiencia": "EAD"}
+banco.criar(
+    banco.experiencia_atende_modalidade,
+    {"modalidade": "presencial", "experiencia": "EAD"},
 )
-banco.responsavel_por_aluno.criar(
-    {"aluno": int("054742"), "responsavel": int("054742")}
+banco.criar(
+    banco.responsavel_por_aluno, {"aluno": int("054742"), "responsavel": int("054742")}
 )
-banco.turma_possui_livro.criar({"livro": "como ser um cara legal", "turma": "#T01"})
+banco.criar(
+    banco.turma_possui_livro, {"livro": "como ser um cara legal", "turma": "#T01"}
+)
 
 banco.conn.drop_banco()
