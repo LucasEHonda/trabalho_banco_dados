@@ -63,12 +63,50 @@ class Responsavel:
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
 
+class Aluno:
+    def __init__(self, conn) -> None:
+        query = """CREATE TABLE IF NOT EXISTS Aluno (
+    pessoa int PRIMARY KEY,
+    foreign key (pessoa) references Pessoa(cpf)
+    );"""
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)
+
+class ResponsavelPorAluno:
+    def __init__(self, conn) -> None:
+        query = """CREATE TABLE IF NOT EXISTS ResponsavelPorAluno (
+    aluno int,
+    foreign key (aluno) references Aluno(pessoa),
+    responsavel int,
+    foreign key (responsavel) references Responsavel(pessoa)
+    );"""
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)    
+
+class Livro:
+    def __init__(self, conn) -> None:
+        query = """CREATE TABLE IF NOT EXISTS Livro (
+    nome varchar(255) PRIMARY KEY
+    );"""
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)    
+
+class TurmaPossuiLivro:
+    def __init__(self, conn) -> None:
+        query = """CREATE TABLE IF NOT EXISTS TurmaPossuiLivro (
+    livro varchar(255),
+    foreign key (livro) references Livro(nome),
+    turma varchar(255),
+    foreign key (turma) references Turma(codigo)    
+    );"""
+        self.mycursor = conn.mycursor
+        self.mycursor.execute(query)    
 
 
 class Horario:
     def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Horario (
-    codigo int PRIMARY KEY,
+    codigo int PRIMARY KEY
     );"""
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
@@ -82,6 +120,7 @@ class Unidade:
     );"""
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
+
 class Modalidade:
     def __init__(self,conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Modalidade (
@@ -89,6 +128,7 @@ class Modalidade:
     );"""
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
+
 class Experiencia:
     def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS Experiencia (
@@ -96,6 +136,7 @@ class Experiencia:
     );"""
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
+
 class ExperienciaAtendeModalidade:
     def __init__(self, conn) -> None:
         query = """CREATE TABLE IF NOT EXISTS ExperienciaAtendeModalidade (
@@ -108,16 +149,21 @@ class ExperienciaAtendeModalidade:
         self.mycursor.execute(query)
 
 
-
-conn = Conexao()
-pessoa = Pessoa(conn)
-professor = Professor(conn)
-turma = Turma(conn)
-experiencia = Experiencia(conn)
-modalidade = Modalidade(conn)
-responsavel = Responsavel(conn)
-experiencia_atende_modalidade = ExperienciaAtendeModalidade(conn)
-
 class EstruturaBase:
     def __init__(self) -> None:
-        pass
+        self.conn = Conexao()
+        self.pessoa = Pessoa(self.conn)
+        self.professor = Professor(self.conn)
+        self.turma = Turma(self.conn)
+        self.experiencia = Experiencia(self.conn)
+        self.modalidade = Modalidade(self.conn)
+        self.responsavel = Responsavel(self.conn)
+        self.experiencia_atende_modalidade = ExperienciaAtendeModalidade(self.conn)
+        self.horario = Horario(self.conn)
+        self.unidade = Unidade(self.conn)
+        self.aluno = Aluno(self.conn)
+        self.Responsavel_porAluno = ResponsavelPorAluno(self.conn)
+        self.livro = Livro(self.conn)
+        self.turma_possui_livro = TurmaPossuiLivro(self.conn)
+
+banco = EstruturaBase()
