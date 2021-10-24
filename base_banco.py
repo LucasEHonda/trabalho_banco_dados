@@ -39,12 +39,15 @@ class EstruturaBase:
     def deletar(self, entidade, dados):
         entidade.deletar(dados.get("coluna"), dados.get("valor"))
 
-    def pegar(self, entidade, dados=None, tudo=False):
-        resultados = entidade.pegar(dados.get("coluna"), dados.get("valor")) if dados else entidade.pegar(tudo=tudo)
+    def atualizar(self, entidade, dados):
+        entidade.atualizar(dados)
+
+    def pegar(self, entidade, dados=None, tudo=False, col_ordenar=None):
+        resultados = entidade.pegar(dados.get("coluna"), dados.get("valor"), col_ordenar=col_ordenar) if dados else entidade.pegar(tudo=tudo, col_ordenar=col_ordenar)
         return [resultado for resultado in resultados]
     
-    def pegar_outra_tabela(self, entidade, dados):
-        resultados = entidade.pegar_outra_tabela(dados.get("coluna"), dados.get("valor"), dados.get("tabela"), {"1": dados.get("1"), "2": dados.get("2")})
+    def pegar_outra_tabela(self, entidade, dados, col_ordenar=None):
+        resultados = entidade.pegar_outra_tabela(dados.get("coluna"), dados.get("dado"), dados.get("tabela"), {"1": dados.get("1"), "2": dados.get("2")}, col_ordenar=col_ordenar)
         return [resultado for resultado in resultados]
 
 
@@ -67,7 +70,7 @@ class EstruturaBase:
             {
                 "cpf": int("054743"),
                 "aniversario": "07/12/1999",
-                "nome": "Lucas Honda",
+                "nome": "Lucas Honda2",
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
@@ -79,7 +82,7 @@ class EstruturaBase:
             {
                 "cpf": int("054744"),
                 "aniversario": "07/12/1999",
-                "nome": "Lucas Honda",
+                "nome": "Lucas Honda3",
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
@@ -103,7 +106,7 @@ class EstruturaBase:
             {
                 "cpf": int("054742"),
                 "aniversario": "07/12/1999",
-                "nome": "Lucas Honda",
+                "nome": "Lucas Honda1",
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
@@ -118,7 +121,33 @@ class EstruturaBase:
         self.criar(self.aluno, {"pessoa": int("054744")})
         self.criar(self.horario, {"codigo": 235})
         self.criar(self.modalidade, {"nome": "presencial"})
-
+        self.criar(
+            self.turma,
+            {
+                "codigo": "#001",
+                "professor": int("054741"),
+                "horario": 235,
+                "modalidade": "presencial",
+            },
+        )
+        self.atualizar(self.aluno, {
+                "coluna": "turma",
+                "new": "#001",
+                "coluna_condicao": "pessoa",
+                "valor_condicao": int("054742")
+            })
+        self.atualizar(self.aluno, {
+                "coluna": "turma",
+                "new": "#001",
+                "coluna_condicao": "pessoa",
+                "valor_condicao": int("054743")
+            })
+        self.atualizar(self.aluno, {
+                "coluna": "turma",
+                "new": "#001",
+                "coluna_condicao": "pessoa",
+                "valor_condicao": int("054744")
+            })            
 # banco = EstruturaBase()
 
 # banco.criar(
