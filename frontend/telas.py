@@ -23,8 +23,6 @@ Digite a opção desejada: """
 Digite a opção desejada: """
 
     tela_menu_aluno = """
-        \t\tSeja bem-vindo aluno! O que deseja fazer?
-
 \tO que você deseja fazer:\n
 1 - Consultar minha nota
 2 - Consultar minha turma
@@ -36,8 +34,6 @@ Digite a opção desejada: """
 Digite a opção desejada: """
 
     tela_menu_professor = """
-        \t\tSeja bem-vindo professor! O que deseja fazer?
-
 \tO que você deseja fazer:\n
 1 - Criar turma
 2 - Adicionar alunos a turma
@@ -53,8 +49,6 @@ Digite a opção desejada: """
 Digite a opção desejada: """
 
     tela_menu_responsavel = """
-        \t\tSeja bem-vindo responsavel! O que deseja fazer?
-
 \tO que você deseja fazer:\n
 1 - Consultar meus dependentes
 3 - Consultar professores
