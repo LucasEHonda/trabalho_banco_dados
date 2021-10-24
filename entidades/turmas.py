@@ -23,17 +23,16 @@ class Turma(EntidadeAbstrata):
     def criar(self, dados):
         codigo = dados.get("codigo")
         professor = dados.get("professor")
-        aluno = dados.get("aluno")
         horario = dados.get("horario")
         modalidade = dados.get("modalidade")
 
         dados_inseridos = (
-            f"'{codigo}', '{professor}', '{aluno}', '{horario}', '{modalidade}'"
+            f"'{codigo}', '{professor}', '{horario}', '{modalidade}'"
         )
 
         query = (
             self.insert_query
-            + f"(codigo, professor, aluno, horario, modalidade) VALUES ({dados_inseridos});"
+            + f"(codigo, professor, horario, modalidade) VALUES ({dados_inseridos});"
         )
 
         try:
