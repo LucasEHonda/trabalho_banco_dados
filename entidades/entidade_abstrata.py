@@ -25,8 +25,9 @@ class EntidadeAbstrata:
                 f"Não foi possivel deletar em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
             )
 
-    def pegar(self, coluna, dado):
-        query = f"SELECT * FROM {self.CLASS_NAME} WHERE {coluna}='{dado}';"
+    def pegar(self, coluna=None, dado=None, tudo=False):
+        base = f"SELECT * FROM {self.CLASS_NAME}"
+        query = base + f" WHERE {coluna}='{dado}';" if not tudo else base
 
         try:
             self.mycursor.execute(query)

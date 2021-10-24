@@ -34,11 +34,9 @@ class EstruturaBase:
     def deletar(self, entidade, dados):
         entidade.deletar(dados.get("coluna"), dados.get("valor"))
 
-    def pegar(self, entidade, dados):
-        resultados = entidade.pegar(dados.get("coluna"), dados.get("valor"))
-
-        for resultado in resultados:
-            print(resultado)
+    def pegar(self, entidade, dados=None, tudo=False):
+        resultados = entidade.pegar(dados.get("coluna"), dados.get("valor")) if dados else entidade.pegar(tudo=tudo)
+        return [resultado for resultado in resultados]
 
 
 # banco = EstruturaBase()

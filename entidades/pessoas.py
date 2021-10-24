@@ -9,6 +9,7 @@ class Pessoa(EntidadeAbstrata):
 
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     cpf int PRIMARY KEY,
+    senha varchar(255)  NOT NULL,
     nome varchar(255)  NOT NULL,
     sexo varchar(10)  NOT NULL,
     aniversario varchar(10)  NOT NULL,
@@ -28,13 +29,15 @@ class Pessoa(EntidadeAbstrata):
         aniversario = dados.get("aniversario")
         cidade = dados.get("cidade")
         estado = dados.get("estado")
+        senha = dados.get("senha")
+
         dados_inseridos = (
-            f"{cpf}, '{nome}', '{sexo}', '{aniversario}', '{cidade}', '{estado}'"
+            f"{cpf}, '{senha}', '{nome}', '{sexo}', '{aniversario}', '{cidade}', '{estado}'"
         )
 
         query = (
             self.insert_query
-            + f"(cpf, nome, sexo, aniversario, cidade, estado) VALUES ({dados_inseridos});"
+            + f"(cpf, senha, nome, sexo, aniversario, cidade, estado) VALUES ({dados_inseridos});"
         )
 
         try:
