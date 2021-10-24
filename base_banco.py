@@ -9,24 +9,29 @@ from entidades.professores import Professor
 from entidades.responsaveis import Responsavel, ResponsavelPorAluno
 from entidades.turmas import Turma, TurmaPossuiLivro
 from entidades.unidades import Unidade
+from entidades.procedures import Procedures
 
 
 class EstruturaBase:
+
+    conn = Conexao()
+    pessoa = Pessoa(conn)
+    professor = Professor(conn)
+    experiencia = Experiencia(conn)
+    modalidade = Modalidade(conn)
+    experiencia_atende_modalidade = ExperienciaAtendeModalidade(conn)
+    horario = Horario(conn)
+    unidade = Unidade(conn)
+    livro = Livro(conn)
+    turma = Turma(conn)
+    aluno = Aluno(conn)
+    responsavel = Responsavel(conn)
+    responsavel_por_aluno = ResponsavelPorAluno(conn)
+    turma_possui_livro = TurmaPossuiLivro(conn)
+
     def __init__(self) -> None:
-        self.conn = Conexao()
-        self.pessoa = Pessoa(self.conn)
-        self.professor = Professor(self.conn)
-        self.experiencia = Experiencia(self.conn)
-        self.modalidade = Modalidade(self.conn)
-        self.responsavel = Responsavel(self.conn)
-        self.experiencia_atende_modalidade = ExperienciaAtendeModalidade(self.conn)
-        self.horario = Horario(self.conn)
-        self.unidade = Unidade(self.conn)
-        self.aluno = Aluno(self.conn)
-        self.responsavel_por_aluno = ResponsavelPorAluno(self.conn)
-        self.livro = Livro(self.conn)
-        self.turma = Turma(self.conn)
-        self.turma_possui_livro = TurmaPossuiLivro(self.conn)
+        Procedures(self.conn)
+        self.script()
 
     def criar(self, entidade, dados):
         entidade.criar(dados)
@@ -37,7 +42,82 @@ class EstruturaBase:
     def pegar(self, entidade, dados=None, tudo=False):
         resultados = entidade.pegar(dados.get("coluna"), dados.get("valor")) if dados else entidade.pegar(tudo=tudo)
         return [resultado for resultado in resultados]
+    
+    def pegar_outra_tabela(self, entidade, dados):
+        resultados = entidade.pegar_outra_tabela(dados.get("coluna"), dados.get("valor"), dados.get("tabela"), {"1": dados.get("1"), "2": dados.get("2")})
+        return [resultado for resultado in resultados]
 
+
+
+    def script(self):
+        self.criar(
+            self.pessoa,
+            {
+                "cpf": int("054740"),
+                "aniversario": "07/12/1999",
+                "nome": "Lucas Honda",
+                "sexo": "Masculino",
+                "cidade": "Brasilia",
+                "estado": "DF",
+                "senha": "honda1"
+            },
+        )
+        self.criar(
+            self.pessoa,
+            {
+                "cpf": int("054743"),
+                "aniversario": "07/12/1999",
+                "nome": "Lucas Honda",
+                "sexo": "Masculino",
+                "cidade": "Brasilia",
+                "estado": "DF",
+                "senha": "honda1"
+            },
+        )
+        self.criar(
+            self.pessoa,
+            {
+                "cpf": int("054744"),
+                "aniversario": "07/12/1999",
+                "nome": "Lucas Honda",
+                "sexo": "Masculino",
+                "cidade": "Brasilia",
+                "estado": "DF",
+                "senha": "honda1"
+            },
+        )
+        self.criar(
+            self.pessoa,
+            {
+                "cpf": int("054741"),
+                "aniversario": "07/12/1999",
+                "nome": "Lucas Honda",
+                "sexo": "Masculino",
+                "cidade": "Brasilia",
+                "estado": "DF",
+                "senha": "honda2"
+            },
+        )
+        self.criar(
+            self.pessoa,
+            {
+                "cpf": int("054742"),
+                "aniversario": "07/12/1999",
+                "nome": "Lucas Honda",
+                "sexo": "Masculino",
+                "cidade": "Brasilia",
+                "estado": "DF",
+                "senha": "honda3"
+            },
+        )
+        self.criar(self.responsavel, {"pessoa": int("054740")})
+
+        self.criar(self.professor, {"pessoa": int("054741"), "codigo": "#001"})
+        self.criar(self.aluno, {"pessoa": int("054742")})
+        self.criar(self.aluno, {"pessoa": int("054743")})
+        self.criar(self.aluno, {"pessoa": int("054744")})
+        self.criar(self.horario, {"codigo": 235})
+        self.criar(self.modalidade, {"nome": "presencial"})
 
 # banco = EstruturaBase()
 
