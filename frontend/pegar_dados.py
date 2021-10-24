@@ -28,7 +28,6 @@ class PegarDados(bcolors):
     def pegar_dados_turma(self):
         return {
             "codigo": self.pega_entradas("Digite o codigo da turma: "),
-            "alunos": self.pega_entradas("Digite o CPF do aluno (PARA INSERIR MAIS DE UM ALUNO SIGA O EXEMPLO: 05472, 08111, 12345. PARA CADASTRAR APENAS UM ALUNO: 054742,): "),
             "horario": self.pega_entradas("Digite o horario: "),
             "modalidade": self.pega_entradas("Digite a modalidade: "),
         }

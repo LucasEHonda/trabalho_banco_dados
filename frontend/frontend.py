@@ -44,19 +44,17 @@ class Frontend(Menu, bcolors):
         # self.clear()        
 
     def cadastrar_turma(self):
-        alunos = self.controller.pegar(self.controller.aluno, tudo=True)
         horarios = self.controller.pegar(self.controller.horario, tudo=True)
         modalidades = self.controller.pegar(self.controller.modalidade, tudo=True)
 
-        if not alunos and not horarios and not modalidades:
-            print(self.FAIL + "Erro: Para cadastrar uma turma é preciso ter alunos, horario, e modalidade cadastrados no sistema" + self.FAIL)
+        if not horarios and not modalidades:
+            print(self.FAIL + "Erro: Para cadastrar uma turma é preciso ter horario, e modalidade cadastrados no sistema" + self.FAIL)
             self.main()
 
         dados = self.pegar_dados_turma()
         
-        for aluno in dados.get("alunos").replace(" ", "").split(","):
-            dados.update({"aluno": aluno, "professor": self.USER[0][0]})
-            self.controller.criar(self.controller.turma, dados)    
+        dados.update({"professor": self.USER[0][0]})
+        self.controller.criar(self.controller.turma, dados)    
         self.main()
 
     def consultar_turmas(self):
