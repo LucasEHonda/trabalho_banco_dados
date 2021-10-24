@@ -11,8 +11,6 @@ class Turma(EntidadeAbstrata):
     codigo varchar(255) PRIMARY KEY,
     professor int NOT NULL,
     foreign key (professor) references Professor(pessoa),
-    aluno int NOT NULL,
-    foreign key (aluno) references Aluno(pessoa),
     horario int NOT NULL,
     foreign key (horario) references Horario(codigo),
     modalidade varchar(255) NOT NULL,
