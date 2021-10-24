@@ -22,7 +22,24 @@ class PegarDados(bcolors):
 
     def pegar_dados_professor(self):
         return {
-            "codigo": self.pega_entradas("Digite seu codigo"),
+            "codigo": self.pega_entradas("Digite seu codigo: "),
+        }
+    
+    def pegar_dados_hoario(self):
+        return {
+            "codigo": self.pega_entradas("Digite o codigo: "),
+        }
+    
+    def pegar_dados_nota(self):
+        return {
+            "aluno": self.pega_entradas("Digite o CPF do aluno: "),
+            "tipo": self.pega_entradas("Digite o tipo da nota (exemplo: atividade, prova, trabalho): "),
+            "nota": self.pega_entradas("Digite a nota do aluno: "),
+        }
+
+    def pegar_dados_modalidade(self):
+        return {
+            "nome": self.pega_entradas("Digite a modalidade: "),
         }
 
     def pegar_dados_turma(self):

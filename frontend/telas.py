@@ -42,7 +42,8 @@ Digite a opção desejada: """
 5 - Consultar livros
 6 - Criar horario
 7 - Criar modalidade
-8 - Ver meu perfil
+8 - Cadastrar nota aluno
+9 - Ver meu perfil
 
 0 - Sair (Deslogar)
 
