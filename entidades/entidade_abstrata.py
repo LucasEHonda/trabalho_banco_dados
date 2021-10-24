@@ -38,3 +38,18 @@ class EntidadeAbstrata:
             )
 
         return self.mycursor.fetchall()
+
+    def pegar_outra_tabela(self, coluna, dado, tabela, ids):
+        primary_id = ids.get('1')
+        second_id = ids.get('2')
+        query = f"SELECT * FROM {self.CLASS_NAME} INNER JOIN {tabela} ON {self.CLASS_NAME}.{primary_id} = {tabela}.{second_id} WHERE {coluna}='{dado}';"
+
+        try:
+            self.mycursor.execute(query)
+            print(f"%%% Pegando {dado} na tabela tabela {self.CLASS_NAME} %%%")
+        except Exception as erro:
+            print(
+                f"Não foi possivel pegar em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+            )
+
+        return self.mycursor.fetchall()
