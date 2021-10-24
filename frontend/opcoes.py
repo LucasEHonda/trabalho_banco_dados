@@ -28,7 +28,7 @@ class Opcoes():
         return {
             "0": lambda: self.sair(),
             "1": lambda: self.cadastrar_turma(),
-            "2": lambda: print("AINDA EM CONSTRUÇÃO"),
+            "2": lambda: self.consultar_turmas(),
             "3": lambda: print("AINDA EM CONSTRUÇÃO"),
             "*": lambda: self.menu_cadastro()
         }
