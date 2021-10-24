@@ -14,9 +14,9 @@ class Frontend(Menu, bcolors):
 
     USER = None
     OPCAO_BASICA = None
+    controller = EstruturaBase()
 
     def __init__(self) -> None:
-        self.controller = EstruturaBase()
         # self.clear()
         self.main()
 
@@ -55,7 +55,22 @@ class Frontend(Menu, bcolors):
         dados = self.pegar_dados_turma()
         
         for aluno in dados.get("alunos").replace(" ", "").split(","):
-            self.controller.criar(self.controller.turma, dados.update({"aluno": aluno, "professor": self.USER[0][0]}))
+            dados.update({"aluno": aluno, "professor": self.USER[0][0]})
+            self.controller.criar(self.controller.turma, dados)    
+        self.main()
+
+    def consultar_turmas(self):
+        turmas = self.controller.pegar(self.controller.turma, {"coluna": "professor", "valor": self.USER[0][0]})
+        
+        if turmas:
+            for turma in turmas:
+                print(f"TURMA: {turma[0]}\nAlunos:")
+                print(f"Professor: {self.USER[0][2]}")
+                print(f"Modalidade: {turma[4]}")
+        else:
+            print("Você não tem nenhuma turma cadastrada")
+        self.pega_entradas("ENTER PARA IR PARA O MENU")
+        self.main()
 
 
     def deslogar(self):
