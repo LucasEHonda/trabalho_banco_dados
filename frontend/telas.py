@@ -40,8 +40,8 @@ Digite a opção desejada: """
 
 \tO que você deseja fazer:\n
 1 - Criar turma
-2 - Consultar minhas turmas
-3 - Adicionar aluno(s) na minha turma
+2 - Adicionar alunos a turma
+3 - Consultar minhas turmas
 4 - Consultar aluno
 5 - Consultar livros
 6 - Criar horario
