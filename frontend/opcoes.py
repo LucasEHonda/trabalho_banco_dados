@@ -1,19 +1,11 @@
-import sys
-import os.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname("./base_banco.py"), os.path.pardir)))
-
-from base_banco import EstruturaBase
-
-class Opcoes():
-    def __init__(self) -> None:
-        self.controller = EstruturaBase()    
-
+class Opcoes():   
     def opcoes_iniciais(self):
         return {
-            "1": lambda: print("AINDA EM CONSTRUÇÃO"),
-            "2": lambda: print("AINDA EM CONSTRUÇÃO"),
-            "3": lambda: print("AINDA EM CONSTRUÇÃO"),
-            "*": lambda: self.menu_cadastro()
+            "0": lambda: self.sair(),
+            "1": lambda: self.menu_aluno(),
+            "2": lambda: self.menu_professor(),
+            "3": lambda: self.menu_responsavel(),
+            "*": lambda: self.menu_cadastro(),
         }
 
     def opcoes_cadastro(self):
@@ -25,6 +17,7 @@ class Opcoes():
 
     def opcoes_aluno(self):
         return {
+            "0": lambda: self.sair(),
             "1": lambda: print("AINDA EM CONSTRUÇÃO"),
             "2": lambda: print("AINDA EM CONSTRUÇÃO"),
             "3": lambda: print("AINDA EM CONSTRUÇÃO"),
@@ -33,7 +26,8 @@ class Opcoes():
 
     def opcoes_professor(self):
         return {
-            "1": lambda: print("AINDA EM CONSTRUÇÃO"),
+            "0": lambda: self.sair(),
+            "1": lambda: self.cadastrar_turma(),
             "2": lambda: print("AINDA EM CONSTRUÇÃO"),
             "3": lambda: print("AINDA EM CONSTRUÇÃO"),
             "*": lambda: self.menu_cadastro()
@@ -41,6 +35,7 @@ class Opcoes():
 
     def opcoes_responsavel(self):
         return {
+            "0": lambda: self.sair(),
             "1": lambda: print("AINDA EM CONSTRUÇÃO"),
             "2": lambda: print("AINDA EM CONSTRUÇÃO"),
             "3": lambda: print("AINDA EM CONSTRUÇÃO"),

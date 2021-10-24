@@ -2,7 +2,7 @@ import os.path
 
 class Telas():
     tela_quem_eh = """
-\tPara isso nos diga quem você é:\n
+\tCADASTRO: Para isso nos diga quem você é:\n
 1 - Aluno
 2 - Professor
 3 - Responsavel
@@ -12,38 +12,55 @@ Digite a opção desejada: """
     tela_inicial = """
         \t\tOlá! Seja bem vindo a nossa escola de idiomas!!
 
-\tPara isso nos diga quem você é:\n
+\tPara começar nos diga quem você é:\n
 1 - Aluno
 2 - Professor
 3 - Responsavel
 
 * - Quero me cadastrar
+0 - Sair
 
 Digite a opção desejada: """
 
     tela_menu_aluno = """
+        \t\tSeja bem-vindo aluno! O que deseja fazer?
+
 \tO que você deseja fazer:\n
 1 - Consultar minha nota
 2 - Consultar minha turma
 3 - Consultar professores
 4 - Ver meu perfil
 
+0 - Sair (Deslogar)
+
 Digite a opção desejada: """
 
     tela_menu_professor = """
+        \t\tSeja bem-vindo professor! O que deseja fazer?
+
 \tO que você deseja fazer:\n
-1 - Consultar minhas turmas
-2 - Consultar aluno
-3 - Consultar livros
-4 - Ver meu perfil
+1 - Criar turma
+2 - Consultar minhas turmas
+3 - Adicionar aluno(s) na minha turma
+4 - Consultar aluno
+5 - Consultar livros
+6 - Criar horario
+7 - Criar modalidade
+8 - Ver meu perfil
+
+0 - Sair (Deslogar)
 
 Digite a opção desejada: """
 
     tela_menu_responsavel = """
+        \t\tSeja bem-vindo responsavel! O que deseja fazer?
+
 \tO que você deseja fazer:\n
 1 - Consultar meus dependentes
 3 - Consultar professores
 4 - Ver meu perfil
+
+0 - Sair (Deslogar)
 
 Digite a opção desejada: """
 
