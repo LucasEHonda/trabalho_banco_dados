@@ -10,7 +10,7 @@ from entidades.responsaveis import Responsavel, ResponsavelPorAluno
 from entidades.turmas import Turma, TurmaPossuiLivro
 from entidades.unidades import Unidade
 from entidades.procedures import Procedures
-
+from entidades.notas import Nota
 
 class EstruturaBase:
 
@@ -28,6 +28,7 @@ class EstruturaBase:
     responsavel = Responsavel(conn)
     responsavel_por_aluno = ResponsavelPorAluno(conn)
     turma_possui_livro = TurmaPossuiLivro(conn)
+    nota = Nota(conn)
 
     def __init__(self) -> None:
         Procedures(self.conn)
@@ -58,11 +59,11 @@ class EstruturaBase:
             {
                 "cpf": int("054740"),
                 "aniversario": "07/12/1999",
-                "nome": "Lucas Honda",
+                "nome": "Marco Aurelio",
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
-                "senha": "honda1"
+                "senha": "honda12"
             },
         )
         self.criar(
@@ -147,7 +148,11 @@ class EstruturaBase:
                 "new": "#001",
                 "coluna_condicao": "pessoa",
                 "valor_condicao": int("054744")
-            })            
+            })
+        self.criar(
+            self.responsavel_por_aluno, {"aluno": int("054742"), "responsavel": int("054740")}
+        )
+        self.criar(self.livro, {"nome": "como ser um cara legal"})
 # banco = EstruturaBase()
 
 # banco.criar(
@@ -166,7 +171,6 @@ class EstruturaBase:
 # banco.criar(banco.unidade, {"professor": int("054742"), "nome": "brasilia - Asa sul"})
 # banco.criar(banco.responsavel, {"pessoa": int("054742")})
 # banco.criar(banco.horario, {"codigo": 235})
-# banco.criar(banco.livro, {"nome": "como ser um cara legal"})
 # banco.criar(banco.modalidade, {"nome": "presencial"})
 # banco.criar(banco.experiencia, {"nome": "EAD"})
 # banco.criar(
