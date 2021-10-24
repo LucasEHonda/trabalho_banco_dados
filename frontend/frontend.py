@@ -20,7 +20,6 @@ class Frontend(Menu, bcolors):
         # self.clear()
         self.main()
 
-
     def cadastra_pessoa(self):
     
         dados = self.pegar_dados_pessoa()
@@ -43,6 +42,25 @@ class Frontend(Menu, bcolors):
         self.pega_entradas("Aperte algo para ir para o menu iniciar")
         # self.clear()        
 
+    def cadastrar_alunos_turma(self):
+        flag = True
+
+        if not self.controller.pegar(self.controller.turma, tudo=True):
+            print(self.FAIL + "Erro: Não existem turmas cadastradas" + self.FAIL)
+            self.main()
+
+        turma = self.pega_entradas("Digite a turma que deseja inserir aluno(s): ")
+
+        while(flag):
+            aluno = self.pega_entradas("Digite o cpf do aluno: ")
+            self.controller.atualizar(self.controller.aluno, {
+                "coluna": "turma",
+                "new": turma,
+                "coluna_condicao": "pessoa",
+                "valor_condicao": aluno
+            })
+            flag = False if self.pega_entradas("Deseja inserir mais alunos? (n/N parar ou qualquer tecla para continuar") == ("n" or "N") else flag
+
     def cadastrar_turma(self):
         horarios = self.controller.pegar(self.controller.horario, tudo=True)
         modalidades = self.controller.pegar(self.controller.modalidade, tudo=True)
@@ -62,9 +80,13 @@ class Frontend(Menu, bcolors):
         
         if turmas:
             for turma in turmas:
-                print(f"TURMA: {turma[0]}\nAlunos:")
-                print(f"Professor: {self.USER[0][2]}")
-                print(f"Modalidade: {turma[4]}")
+                print(f"TURMA: {turma[0]}")
+                print(f"Professor: {self.USER[0][2]}\nAlunos:")
+                alunos = self.controller.pegar_outra_tabela(self.controller.aluno, {"coluna": "turma", "dado": turma[0], "tabela": "Pessoa", "1": "pessoa", "2": "cpf"}, "Pessoa.nome")
+                print("\tNOME -\t\t\tSEXO -\t\t\tNASCIMENTO")
+                for aluno in alunos:
+                    print(f"\t{aluno[4]} \t{aluno[5]} \t{aluno[6]}")
+                print(f"Modalidade: {turma[3]}")
         else:
             print("Você não tem nenhuma turma cadastrada")
         self.pega_entradas("ENTER PARA IR PARA O MENU")
