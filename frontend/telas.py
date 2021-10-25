@@ -27,7 +27,8 @@ Digite a opção desejada: """
 1 - Consultar minha nota
 2 - Consultar minha turma
 3 - Consultar professores
-4 - Ver meu perfil
+4 - Atualizar minha foto de perfil
+5 - Ver meu perfil
 
 0 - Sair (Deslogar)
 
@@ -43,7 +44,8 @@ Digite a opção desejada: """
 6 - Criar horario
 7 - Criar modalidade
 8 - Cadastrar nota aluno
-9 - Ver meu perfil
+9 - Atualizar minha foto de perfil
+10 - Ver meu perfil
 
 0 - Sair (Deslogar)
 
@@ -52,7 +54,8 @@ Digite a opção desejada: """
     tela_menu_responsavel = """
 \tO que você deseja fazer:\n
 1 - Consultar meus dependentes
-3 - Consultar professores
+2 - Consultar professores
+3 - Atualizar minha foto de perfil
 4 - Ver meu perfil
 
 0 - Sair (Deslogar)

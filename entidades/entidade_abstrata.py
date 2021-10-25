@@ -73,3 +73,9 @@ class EntidadeAbstrata:
             ) if self.debug else None
 
         return self.mycursor.fetchall()
+    
+    def inserir_imagem(self, path, dados):
+        binaryData = open(path, 'rb').read()
+        
+        query = 'UPDATE Pessoa SET imagem=%s where cpf=%s;'
+        self.mycursor.execute(query, (binaryData, dados, ))

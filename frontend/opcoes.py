@@ -21,7 +21,8 @@ class Opcoes():
             "1": lambda: self.consultar_minhas_notas(),
             "2": lambda: self.consultar_turma_aluno(),
             "3": lambda: self.consultar_professores(),
-            "4": lambda: self.consultar_meu_perfil_aluno(),
+            "4": lambda: self.atualizar_foto_perfil(),
+            "5": lambda: self.consultar_meu_perfil_aluno(),
             "*": lambda: self.menu_cadastro()
         }        
 
@@ -36,7 +37,8 @@ class Opcoes():
             "6": lambda: self.cadastra_horario(),
             "7": lambda: self.cadastra_modalidade(),
             "8": lambda: self.cadastrar_nota(),
-            "9": lambda: self.consultar_meu_perfil_professor(),
+            "9": lambda: self.atualizar_foto_perfil(),
+            "10": lambda: self.consultar_meu_perfil_professor(),
 
         }
 
@@ -45,7 +47,8 @@ class Opcoes():
             "0": lambda: self.sair(),
             "1": lambda: self.consultar_meu_dependentes(),
             "2": lambda: self.consultar_professores(),
-            "3": lambda: self.consultar_meu_perfil_responsavel(),
+            "3": lambda: self.atualizar_foto_perfil(),
+            "4": lambda: self.consultar_meu_perfil_responsavel(),
             "*": lambda: self.menu_cadastro()
         }
     

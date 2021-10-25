@@ -88,6 +88,10 @@ class Frontend(Menu, bcolors):
         self.controller.criar(self.controller.modalidade, self.pegar_dados_modalidade())
         self.main()
 
+    def atualizar_foto_perfil(self):
+        self.controller.inserir_imagem(path=self.pega_entradas("insira o caminho da imagem"), dados=self.USER[0][0])
+        self.main()
+
     def consultar_meu_perfil_professor(self):
         turmas = self.controller.pegar(self.controller.turma, {"coluna": "professor", "valor": self.USER[0][0]})
         print(f"Professor: {self.USER[0][2]} {self.USER[0][5]}-{self.USER[0][6]}\nCPF: {self.USER[0][0]}\nSexo: {self.USER[0][3]}\nNascimento: {self.USER[0][4]}")

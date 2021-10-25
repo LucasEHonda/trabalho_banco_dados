@@ -50,8 +50,9 @@ class EstruturaBase:
     def pegar_outra_tabela(self, entidade, dados, col_ordenar=None):
         resultados = entidade.pegar_outra_tabela(dados.get("coluna"), dados.get("dado"), dados.get("tabela"), {"1": dados.get("1"), "2": dados.get("2")}, col_ordenar=col_ordenar)
         return [resultado for resultado in resultados]
-
-
+    
+    def inserir_imagem(self, path, dados):
+        self.pessoa.inserir_imagem(path, dados)
 
     def script(self):
         self.criar(

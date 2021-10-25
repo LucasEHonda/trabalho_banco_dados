@@ -12,6 +12,7 @@ class Pessoa(EntidadeAbstrata):
     senha varchar(255)  NOT NULL,
     nome varchar(255)  NOT NULL,
     sexo varchar(10)  NOT NULL,
+    imagem BLOB,
     aniversario varchar(10)  NOT NULL,
     cidade varchar(255)  NOT NULL,
     estado varchar(255)  NOT NULL
