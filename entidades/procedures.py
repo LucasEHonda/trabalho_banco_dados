@@ -1,5 +1,6 @@
-class Procedures:
+class Procedure:
     def __init__(self, conn) -> None:
+        self.conn = conn
         self.mycursor = conn.mycursor
         self.verifica_existe_pessoa_cadastrada()
 
@@ -29,5 +30,6 @@ class Procedures:
 """
         try:
             self.mycursor.execute(query)
+            self.conn.con.commit()
         except Exception as e:
             print(e)

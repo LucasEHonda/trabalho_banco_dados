@@ -6,7 +6,7 @@ from entidades.livros import Livro
 from entidades.modalidades import Modalidade
 from entidades.notas import Nota
 from entidades.pessoas import Pessoa
-from entidades.procedures import Procedures
+from entidades.procedures import Procedure
 from entidades.professores import Professor
 from entidades.responsaveis import Responsavel, ResponsavelPorAluno
 from entidades.turmas import Turma, TurmaPossuiLivro
@@ -32,7 +32,8 @@ class EstruturaBase:
     nota = Nota(conn)
 
     def __init__(self) -> None:
-        Procedures(self.conn)
+        Procedure(self.conn)
+        View(self.conn)
         self.script()
 
     def criar(self, entidade, dados):
