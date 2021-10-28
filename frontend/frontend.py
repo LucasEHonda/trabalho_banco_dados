@@ -25,24 +25,44 @@ class Frontend(Menu, bcolors):
     def cadastra_pessoa(self):
 
         dados = self.pegar_dados_pessoa()
-        self.controller.criar(self.controller.pessoa, dados)
+        cpf = dados.get("cpf")
 
-        return dados.get("cpf")
+        if self.verifica_existe_cadastro(cpf):
+            raise ValueError("Já existe um usuario cadastrado com esse CPF")
+
+        self.controller.criar(self.controller.pessoa, dados)
+        return cpf
 
     def cadastra_professor(self):
-
-        cpf = self.cadastra_pessoa()
-        dados = self.pegar_dados_professor()
-        dados.update({"pessoa": cpf})
-        self.controller.criar(self.controller.professor, dados)
+        try:
+            cpf = self.cadastra_pessoa()
+            dados = self.pegar_dados_professor()
+            dados.update({"pessoa": cpf})
+            self.controller.criar(self.controller.professor, dados)
+        except Exception as erro:
+            print(erro)
 
         self.pega_entradas("Aperte algo para ir para o menu iniciar")
         # self.clear()
 
-    def cadastra_pessoa_generica(self, entidade):
-        self.controller.criar(entidade, {"pessoa": self.cadastra_pessoa()})
+    def cadastra_pessoa_generica(self, entidade):        
+        try:
+            cpf = self.cadastra_pessoa()
+            self.controller.criar(entidade, {"pessoa": cpf})
+        except Exception as erro:
+            print(erro)            
+
         self.pega_entradas("Aperte algo para ir para o menu iniciar")
         # self.clear()
+
+    def verifica_existe_cadastro(self, cpf):
+        args=(cpf,)
+        self.controller.conn.mycursor.callproc("verifica_existe_pessoa_cadastrada", args=args)
+        for results in self.controller.conn.mycursor.stored_results():
+            for valores in results.fetchall():
+                if valores:
+                    return True
+        return False
 
     def cadastrar_alunos_turma(self):
         flag = True
