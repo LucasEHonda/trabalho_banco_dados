@@ -1,5 +1,6 @@
 from telas import bcolors
 
+
 class PegarDados(bcolors):
     def pegar_dados_login(self):
         return {
@@ -24,16 +25,18 @@ class PegarDados(bcolors):
         return {
             "codigo": self.pega_entradas("Digite seu codigo: "),
         }
-    
+
     def pegar_dados_hoario(self):
         return {
             "codigo": self.pega_entradas("Digite o codigo: "),
         }
-    
+
     def pegar_dados_nota(self):
         return {
             "aluno": self.pega_entradas("Digite o CPF do aluno: "),
-            "tipo": self.pega_entradas("Digite o tipo da nota (exemplo: atividade, prova, trabalho): "),
+            "tipo": self.pega_entradas(
+                "Digite o tipo da nota (exemplo: atividade, prova, trabalho): "
+            ),
             "nota": self.pega_entradas("Digite a nota do aluno: "),
         }
 
@@ -53,4 +56,4 @@ class PegarDados(bcolors):
         entrada = input(self.OKBLUE + texto + self.ENDC)
         if is_int:
             return int(entrada)
-        return entrada    
+        return entrada

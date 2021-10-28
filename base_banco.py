@@ -4,13 +4,14 @@ from entidades.experiencias import Experiencia, ExperienciaAtendeModalidade
 from entidades.horarios import Horario
 from entidades.livros import Livro
 from entidades.modalidades import Modalidade
+from entidades.notas import Nota
 from entidades.pessoas import Pessoa
+from entidades.procedures import Procedures
 from entidades.professores import Professor
 from entidades.responsaveis import Responsavel, ResponsavelPorAluno
 from entidades.turmas import Turma, TurmaPossuiLivro
 from entidades.unidades import Unidade
-from entidades.procedures import Procedures
-from entidades.notas import Nota
+
 
 class EstruturaBase:
 
@@ -44,13 +45,25 @@ class EstruturaBase:
         entidade.atualizar(dados)
 
     def pegar(self, entidade, dados=None, tudo=False, col_ordenar=None):
-        resultados = entidade.pegar(dados.get("coluna"), dados.get("valor"), col_ordenar=col_ordenar) if dados else entidade.pegar(tudo=tudo, col_ordenar=col_ordenar)
+        resultados = (
+            entidade.pegar(
+                dados.get("coluna"), dados.get("valor"), col_ordenar=col_ordenar
+            )
+            if dados
+            else entidade.pegar(tudo=tudo, col_ordenar=col_ordenar)
+        )
         return [resultado for resultado in resultados]
-    
+
     def pegar_outra_tabela(self, entidade, dados, col_ordenar=None):
-        resultados = entidade.pegar_outra_tabela(dados.get("coluna"), dados.get("dado"), dados.get("tabela"), {"1": dados.get("1"), "2": dados.get("2")}, col_ordenar=col_ordenar)
+        resultados = entidade.pegar_outra_tabela(
+            dados.get("coluna"),
+            dados.get("dado"),
+            dados.get("tabela"),
+            {"1": dados.get("1"), "2": dados.get("2")},
+            col_ordenar=col_ordenar,
+        )
         return [resultado for resultado in resultados]
-    
+
     def inserir_imagem(self, path, dados):
         self.pessoa.inserir_imagem(path, dados)
 
@@ -64,7 +77,7 @@ class EstruturaBase:
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
-                "senha": "honda12"
+                "senha": "honda12",
             },
         )
         self.criar(
@@ -76,7 +89,7 @@ class EstruturaBase:
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
-                "senha": "honda1"
+                "senha": "honda1",
             },
         )
         self.criar(
@@ -88,7 +101,7 @@ class EstruturaBase:
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
-                "senha": "honda1"
+                "senha": "honda1",
             },
         )
         self.criar(
@@ -100,7 +113,7 @@ class EstruturaBase:
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
-                "senha": "honda2"
+                "senha": "honda2",
             },
         )
         self.criar(
@@ -112,7 +125,7 @@ class EstruturaBase:
                 "sexo": "Masculino",
                 "cidade": "Brasilia",
                 "estado": "DF",
-                "senha": "honda3"
+                "senha": "honda3",
             },
         )
         self.criar(self.responsavel, {"pessoa": int("054740")})
@@ -132,28 +145,40 @@ class EstruturaBase:
                 "modalidade": "presencial",
             },
         )
-        self.atualizar(self.aluno, {
+        self.atualizar(
+            self.aluno,
+            {
                 "coluna": "turma",
                 "new": "#001",
                 "coluna_condicao": "pessoa",
-                "valor_condicao": int("054742")
-            })
-        self.atualizar(self.aluno, {
+                "valor_condicao": int("054742"),
+            },
+        )
+        self.atualizar(
+            self.aluno,
+            {
                 "coluna": "turma",
                 "new": "#001",
                 "coluna_condicao": "pessoa",
-                "valor_condicao": int("054743")
-            })
-        self.atualizar(self.aluno, {
+                "valor_condicao": int("054743"),
+            },
+        )
+        self.atualizar(
+            self.aluno,
+            {
                 "coluna": "turma",
                 "new": "#001",
                 "coluna_condicao": "pessoa",
-                "valor_condicao": int("054744")
-            })
+                "valor_condicao": int("054744"),
+            },
+        )
         self.criar(
-            self.responsavel_por_aluno, {"aluno": int("054742"), "responsavel": int("054740")}
+            self.responsavel_por_aluno,
+            {"aluno": int("054742"), "responsavel": int("054740")},
         )
         self.criar(self.livro, {"nome": "como ser um cara legal"})
+
+
 # banco = EstruturaBase()
 
 # banco.criar(

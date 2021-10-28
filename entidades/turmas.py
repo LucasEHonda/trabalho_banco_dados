@@ -26,9 +26,7 @@ class Turma(EntidadeAbstrata):
         horario = dados.get("horario")
         modalidade = dados.get("modalidade")
 
-        dados_inseridos = (
-            f"'{codigo}', '{professor}', '{horario}', '{modalidade}'"
-        )
+        dados_inseridos = f"'{codigo}', '{professor}', '{horario}', '{modalidade}'"
 
         query = (
             self.insert_query

@@ -6,11 +6,9 @@ class Conexao:
     NOME_BANCO = "db_escolaIdiomas"
 
     def __init__(self, user="admin", password="admin123", host="localhost") -> None:
-        
+
         print(f"*** Iniciando conexão ao banco ***")
-        self.con = mysql.connector.connect(
-            user=user, password=password, host=host
-        )
+        self.con = mysql.connector.connect(user=user, password=password, host=host)
 
         self.mycursor = self.con.cursor()
 

@@ -32,9 +32,7 @@ class Pessoa(EntidadeAbstrata):
         estado = dados.get("estado")
         senha = dados.get("senha")
 
-        dados_inseridos = (
-            f"{cpf}, '{senha}', '{nome}', '{sexo}', '{aniversario}', '{cidade}', '{estado}'"
-        )
+        dados_inseridos = f"{cpf}, '{senha}', '{nome}', '{sexo}', '{aniversario}', '{cidade}', '{estado}'"
 
         query = (
             self.insert_query

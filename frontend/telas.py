@@ -1,6 +1,7 @@
 import os.path
 
-class Telas():
+
+class Telas:
     tela_quem_eh = """
 \tCADASTRO: Para isso nos diga quem você é:\n
 1 - Aluno
@@ -63,15 +64,16 @@ Digite a opção desejada: """
 Digite a opção desejada: """
 
     def clear(self):
-        os.system('clear')
+        os.system("clear")
+
 
 class bcolors(Telas):
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"

@@ -13,7 +13,7 @@ class EntidadeAbstrata:
 
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
-        self.debug=debug
+        self.debug = debug
 
     def criar(self, dados):
         pass
@@ -23,7 +23,9 @@ class EntidadeAbstrata:
 
         try:
             self.mycursor.execute(query)
-            print(f"%%% Deletando {dado} na tabela tabela {self.CLASS_NAME} %%%") if self.debug else None
+            print(
+                f"%%% Deletando {dado} na tabela tabela {self.CLASS_NAME} %%%"
+            ) if self.debug else None
         except Exception as erro:
             print(
                 f"Não foi possivel deletar em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
@@ -34,7 +36,9 @@ class EntidadeAbstrata:
 
         try:
             self.mycursor.execute(query)
-            print(f'@@@ Atualizando {dados.get("coluna")} na tabela tabela {self.CLASS_NAME} @@@') if self.debug else None
+            print(
+                f'@@@ Atualizando {dados.get("coluna")} na tabela tabela {self.CLASS_NAME} @@@'
+            ) if self.debug else None
         except Exception as erro:
             print(
                 f"Não foi possivel atualizar em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
@@ -48,34 +52,45 @@ class EntidadeAbstrata:
 
         try:
             self.mycursor.execute(query)
-            print(f"%%% Pegando {dado} na tabela tabela {self.CLASS_NAME} %%%") if self.debug else None
+            print(
+                f"%%% Pegando {dado} na tabela tabela {self.CLASS_NAME} %%%"
+            ) if self.debug else None
         except Exception as erro:
             print(
-                f"Não foi possivel pegar em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}" if self.debug else None
+                f"Não foi possivel pegar em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
+                if self.debug
+                else None
             )
 
         return self.mycursor.fetchall()
 
     def pegar_outra_tabela(self, coluna, dado, tabela, ids, col_ordenar=None):
         ordenar = f" ORDER BY {col_ordenar};"
-        primary_id = ids.get('1')
-        second_id = ids.get('2')
+        primary_id = ids.get("1")
+        second_id = ids.get("2")
         query = f"SELECT * FROM {self.CLASS_NAME} INNER JOIN {tabela} ON {self.CLASS_NAME}.{primary_id} = {tabela}.{second_id} WHERE {coluna}='{dado}'"
         query = query + ordenar if col_ordenar else query + ";"
 
-
         try:
             self.mycursor.execute(query)
-            print(f"%%% Pegando {dado} na tabela tabela {self.CLASS_NAME} %%%") if self.debug else None
+            print(
+                f"%%% Pegando {dado} na tabela tabela {self.CLASS_NAME} %%%"
+            ) if self.debug else None
         except Exception as erro:
             print(
                 f"Não foi possivel pegar em {self.CLASS_NAME}. Ocorreu o seguinte erro>> {erro}"
             ) if self.debug else None
 
         return self.mycursor.fetchall()
-    
+
     def inserir_imagem(self, path, dados):
-        binaryData = open(path, 'rb').read()
-        
-        query = 'UPDATE Pessoa SET imagem=%s where cpf=%s;'
-        self.mycursor.execute(query, (binaryData, dados, ))
+        binaryData = open(path, "rb").read()
+
+        query = "UPDATE Pessoa SET imagem=%s where cpf=%s;"
+        self.mycursor.execute(
+            query,
+            (
+                binaryData,
+                dados,
+            ),
+        )

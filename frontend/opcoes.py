@@ -1,4 +1,4 @@
-class Opcoes():   
+class Opcoes:
     def opcoes_iniciais(self):
         return {
             "0": lambda: self.sair(),
@@ -23,8 +23,8 @@ class Opcoes():
             "3": lambda: self.consultar_professores(),
             "4": lambda: self.atualizar_foto_perfil(),
             "5": lambda: self.consultar_meu_perfil_aluno(),
-            "*": lambda: self.menu_cadastro()
-        }        
+            "*": lambda: self.menu_cadastro(),
+        }
 
     def opcoes_professor(self):
         return {
@@ -39,7 +39,6 @@ class Opcoes():
             "8": lambda: self.cadastrar_nota(),
             "9": lambda: self.atualizar_foto_perfil(),
             "10": lambda: self.consultar_meu_perfil_professor(),
-
         }
 
     def opcoes_responsavel(self):
@@ -49,6 +48,5 @@ class Opcoes():
             "2": lambda: self.consultar_professores(),
             "3": lambda: self.atualizar_foto_perfil(),
             "4": lambda: self.consultar_meu_perfil_responsavel(),
-            "*": lambda: self.menu_cadastro()
+            "*": lambda: self.menu_cadastro(),
         }
-    
