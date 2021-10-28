@@ -9,7 +9,7 @@ class Nota(EntidadeAbstrata):
 
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     aluno int PRIMARY KEY,
-    foreign key (aluno) references Aluno(pessoa),
+    foreign key (aluno) references Aluno(pessoa) ON DELETE CASCADE,
     tipo varchar(255),
     nota varchar(255)
     );"""

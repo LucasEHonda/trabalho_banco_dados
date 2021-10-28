@@ -9,7 +9,7 @@ class Responsavel(EntidadeAbstrata):
 
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     pessoa int PRIMARY KEY,
-    foreign key (pessoa) references Pessoa(cpf)
+    foreign key (pessoa) references Pessoa(cpf) ON DELETE CASCADE
     );"""
 
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")
@@ -43,9 +43,9 @@ class ResponsavelPorAluno(EntidadeAbstrata):
 
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     aluno int,
-    foreign key (aluno) references Aluno(pessoa),
+    foreign key (aluno) references Aluno(pessoa) ON DELETE CASCADE,
     responsavel int,
-    foreign key (responsavel) references Responsavel(pessoa)
+    foreign key (responsavel) references Responsavel(pessoa) ON DELETE CASCADE
     );"""
 
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")

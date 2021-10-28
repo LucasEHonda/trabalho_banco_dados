@@ -9,7 +9,7 @@ class Professor(EntidadeAbstrata):
 
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     pessoa int PRIMARY KEY,
-    foreign key (pessoa) references Pessoa(cpf),
+    foreign key (pessoa) references Pessoa(cpf) ON DELETE CASCADE,
     codigo varchar (255) NOT NULL
     );"""
 

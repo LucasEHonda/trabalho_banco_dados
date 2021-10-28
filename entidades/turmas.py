@@ -10,11 +10,11 @@ class Turma(EntidadeAbstrata):
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     codigo varchar(255) PRIMARY KEY,
     professor int NOT NULL,
-    foreign key (professor) references Professor(pessoa),
+    foreign key (professor) references Professor(pessoa) ON DELETE CASCADE,
     horario int NOT NULL,
-    foreign key (horario) references Horario(codigo),
+    foreign key (horario) references Horario(codigo) ON DELETE CASCADE,
     modalidade varchar(255) NOT NULL,
-    foreign key (modalidade) references Modalidade(nome)
+    foreign key (modalidade) references Modalidade(nome) ON DELETE CASCADE
     );"""
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")
         self.mycursor = conn.mycursor
@@ -52,9 +52,9 @@ class TurmaPossuiLivro(EntidadeAbstrata):
 
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     livro varchar(255),
-    foreign key (livro) references Livro(nome),
+    foreign key (livro) references Livro(nome) ON DELETE CASCADE,
     turma varchar(255),
-    foreign key (turma) references Turma(codigo)    
+    foreign key (turma) references Turma(codigo) ON DELETE CASCADE
     );"""
 
         print(f"--- Criando/Instanciando tabela TurmaPossuiLivro ---")

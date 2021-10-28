@@ -42,9 +42,9 @@ class ExperienciaAtendeModalidade(EntidadeAbstrata):
 
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     modalidade varchar(255) NOT NULL,
-    foreign key (modalidade) references Modalidade(nome),
+    foreign key (modalidade) references Modalidade(nome) ON DELETE CASCADE,
     experiencia varchar(255) NOT NULL,
-    foreign key (experiencia) references Experiencia(nome)
+    foreign key (experiencia) references Experiencia(nome) ON DELETE CASCADE
     );"""
 
         print(f"--- Criando/Instanciando tabela ExperienciaAtendeModalidade ---")

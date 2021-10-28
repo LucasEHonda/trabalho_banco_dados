@@ -1,6 +1,6 @@
 class EntidadeAbstrata:
 
-    debug = False
+    debug = True
 
     def __init__(self, conn, debug=False) -> None:
         self.CLASS_NAME = self.__class__.__name__

@@ -10,7 +10,7 @@ class Unidade(EntidadeAbstrata):
         query = f"""CREATE TABLE IF NOT EXISTS {self.CLASS_NAME} (
     nome varchar(255) PRIMARY KEY,
     professor int NOT NULL,
-    foreign key (professor) references Professor(pessoa)
+    foreign key (professor) references Professor(pessoa) ON DELETE CASCADE
     );"""
 
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")
