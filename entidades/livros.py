@@ -9,8 +9,11 @@ class Livro(EntidadeAbstrata):
     nome varchar(255) PRIMARY KEY
     );"""
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")
+
+        self.conn = conn
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
+        self.conn.con.commit()
 
     def criar(self, dados):
         nome = dados.get("nome")

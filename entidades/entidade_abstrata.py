@@ -11,6 +11,7 @@ class EntidadeAbstrata:
 
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")
 
+        self.conn = conn
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
         self.debug = debug
@@ -23,6 +24,7 @@ class EntidadeAbstrata:
 
         try:
             self.mycursor.execute(query)
+            self.conn.con.commit()
             print(
                 f"%%% Deletando {dado} na tabela tabela {self.CLASS_NAME} %%%"
             ) if self.debug else None
@@ -36,6 +38,7 @@ class EntidadeAbstrata:
 
         try:
             self.mycursor.execute(query)
+            self.conn.con.commit()
             print(
                 f'@@@ Atualizando {dados.get("coluna")} na tabela tabela {self.CLASS_NAME} @@@'
             ) if self.debug else None
@@ -94,3 +97,4 @@ class EntidadeAbstrata:
                 dados,
             ),
         )
+        self.conn.con.commit()

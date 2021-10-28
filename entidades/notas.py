@@ -16,8 +16,10 @@ class Nota(EntidadeAbstrata):
 
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")
 
+        self.conn = conn
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
+        self.conn.con.commit()
 
     def criar(self, dados):
         aluno = dados.get("aluno")

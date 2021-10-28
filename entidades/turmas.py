@@ -17,8 +17,11 @@ class Turma(EntidadeAbstrata):
     foreign key (modalidade) references Modalidade(nome) ON DELETE CASCADE
     );"""
         print(f"--- Criando/Instanciando tabela {self.CLASS_NAME} ---")
+
+        self.conn = conn
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
+        self.conn.con.commit()
 
     def criar(self, dados):
         codigo = dados.get("codigo")
@@ -58,9 +61,10 @@ class TurmaPossuiLivro(EntidadeAbstrata):
     );"""
 
         print(f"--- Criando/Instanciando tabela TurmaPossuiLivro ---")
-
+        self.conn = conn
         self.mycursor = conn.mycursor
         self.mycursor.execute(query)
+        self.conn.con.commit()
 
     def criar(self, dados):
         livro = dados.get("livro")

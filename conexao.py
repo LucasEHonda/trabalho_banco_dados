@@ -22,6 +22,7 @@ class Conexao:
         if not exists:
             print(f"--- Criando Banco {self.NOME_BANCO} ---")
             self.mycursor.execute(f"CREATE DATABASE {self.NOME_BANCO}")
+            self.con.commit()
         self.mycursor.execute(f"USE {self.NOME_BANCO}")
 
     def drop_banco(self) -> None:
