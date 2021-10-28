@@ -1,17 +1,33 @@
 class Procedures:
     def __init__(self, conn) -> None:
         self.mycursor = conn.mycursor
-        self.pegar_alunos_por_turma()
+        self.verifica_existe_pessoa_cadastrada()
 
-    def pegar_alunos_por_turma(self):
-        query = """CREATE PROCEDURE pegar_alunos_por_turma (cpf int) BEGIN
-SELECT *
-FROM Aluno
-INNER JOIN Pessoa ON Aluno.pessoa = Pessoa.cpf
-INNER JOIN Turma ON Aluno.pessoa = Turma.aluno
-WHERE Turma.aluno = cpf; END
+    def verifica_existe_pessoa_cadastrada(self):
+        query = """CREATE PROCEDURE verifica_existe_pessoa_cadastrada (cpf INT)
+  BEGIN
+    SELECT *
+    FROM   (SELECT Pessoa.nome, Aluno.pessoa
+            FROM   Pessoa
+                   INNER JOIN Aluno
+                           ON Pessoa.cpf = Aluno.pessoa
+                           WHERE  Aluno.pessoa = cpf
+            UNION
+            SELECT Pessoa.nome, Professor.pessoa
+            FROM   Pessoa
+                   INNER JOIN Professor
+                           ON Pessoa.cpf = Professor.pessoa
+                           WHERE  Professor.pessoa = cpf
+            UNION
+            SELECT Pessoa.nome, Responsavel.pessoa
+            FROM   Pessoa
+                   INNER JOIN Responsavel
+                           ON Pessoa.cpf = Responsavel.pessoa
+                           WHERE  Responsavel.pessoa = cpf) AS t
+    WHERE  cpf = cpf;
+  END 
 """
-        # try:
-        #     self.mycursor.execute(query)
-        # except Exception as e:
-        #     print(e)
+        try:
+            self.mycursor.execute(query)
+        except Exception as e:
+            print(e)
