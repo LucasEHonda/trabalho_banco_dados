@@ -130,7 +130,7 @@ class Frontend(Menu, bcolors):
             "coluna": "codigo",
             "valor": dados.get("codigo"),
         })
-
+        self.controller.deletar(self.controller.turma, dados)
         self.pega_entradas("ENTER PARA IR PARA O MENU")
         self.main()
 
@@ -307,8 +307,7 @@ class Frontend(Menu, bcolors):
                 print(f"Modalidade: {turma[3]}")
         else:
             print("Você não tem nenhuma turma cadastrada")
-        self.pega_entradas("ENTER PARA IR PARA O MENU")
-        self.main()
+        self.menu_minhas_turmas_professor()
 
     def deslogar(self):
         self.USER = None
