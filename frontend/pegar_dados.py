@@ -52,6 +52,9 @@ class PegarDados(bcolors):
             "modalidade": self.pega_entradas("Digite a modalidade: "),
         }
 
+    def pegar_dados_deletar_turma(self):
+        return  {"codigo": self.pega_entradas("Digite o codigo da turma: "),}
+
     def pega_entradas(self, texto, is_int=False):
         entrada = input(self.OKBLUE + texto + self.ENDC)
         if is_int:

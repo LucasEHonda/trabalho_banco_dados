@@ -52,6 +52,17 @@ Digite a opção desejada: """
 
 Digite a opção desejada: """
 
+    tela_opcoes_minhas_turmas_professor = """
+\tO que você deseja fazer:\n
+1 - Adicionar livros a turma
+2 - Atualizar horario da turma
+3 - Atualizar modalidade da turma
+4 - Deletar turma
+
+0 - Voltar menu principal
+
+Digite a opção desejada: """
+
     tela_menu_responsavel = """
 \tO que você deseja fazer:\n
 1 - Consultar meus dependentes

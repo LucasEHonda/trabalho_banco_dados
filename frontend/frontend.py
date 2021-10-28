@@ -123,6 +123,22 @@ class Frontend(Menu, bcolors):
         self.pega_entradas("ENTER PARA IR PARA O MENU")
         self.main()
 
+
+    def deletar_turma(self):
+        dados = self.pegar_dados_deletar_turma()
+        dados.update({
+            "coluna": "codigo",
+            "valor": dados.get("codigo"),
+        })
+
+        self.pega_entradas("ENTER PARA IR PARA O MENU")
+        self.main()
+
+    def menu_minhas_turmas_professor(self):
+        opcoes = self.opcoes_minhas_turmas_professor()
+        entrada = self.pega_entradas(self.tela_opcoes_minhas_turmas_professor)
+        opcoes.get(entrada)()
+
     def consultar_meu_perfil_aluno(self):
         aluno = self.controller.pegar(
             self.controller.aluno, {"coluna": "pessoa", "valor": self.USER[0][0]}

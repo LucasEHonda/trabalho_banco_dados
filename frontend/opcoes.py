@@ -40,6 +40,15 @@ class Opcoes:
             "9": lambda: self.atualizar_foto_perfil(),
             "10": lambda: self.consultar_meu_perfil_professor(),
         }
+    
+    def opcoes_minhas_turmas_professor(self):
+        return {
+            "0": lambda: self.main(),
+            "1": lambda: print("Opção em construção!!!"),
+            "2": lambda: print("Opção em construção!!!"),
+            "3": lambda: print("Opção em construção!!!"),
+            "4": lambda: self.deletar_turma(),
+        }
 
     def opcoes_responsavel(self):
         return {
