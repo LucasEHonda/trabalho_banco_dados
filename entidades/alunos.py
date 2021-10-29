@@ -30,6 +30,7 @@ class Aluno(EntidadeAbstrata):
 
         try:
             self.mycursor.execute(query)
+            self.conn.con.commit()
             print(
                 f"^^^ Inserindo {dados_inseridos} na tabela tabela {self.CLASS_NAME} ^^^"
             )
